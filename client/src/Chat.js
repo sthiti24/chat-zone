@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-
+import './Chat.css'
 const Chat = ({socket,userName,roomID}) => {
 
     const [msg,setMsg] = useState("")
@@ -28,26 +28,27 @@ const Chat = ({socket,userName,roomID}) => {
     },[socket])
 
   return (
-    <div style={{display:"flex",flexDirection:"column",
-    alignItems:"center",justifyContent:"center"}}>
-        <div>
-           <h1>Live Chat</h1>
-        </div>
+    <div className="container" >
+        <h1 className='title'>
+           CHAT ZONE
+        </h1>
 
-       <div style={{border:"2px solid black",height:"350px",width:"400px",overflowY:"auto"}}>
+       <div className="box" >
           
             {msgList.map((chat)=>{
-              return (<div className='message'>
-                   <div className='message-content' id={userName===chat.author?"right":"left"}>
+              return (<div className='message' id={userName===chat.author?"right":"left"}>
+                  
+                   <div className='message-meta'><span className='author'>{chat.author}</span> 
+                   <span className='time'> Today at {chat.time}</span></div>
+
+                   <div className='message-content' >
                     {chat.message}</div>
-                   <div className='message-meta'>{chat.author} {chat.time}</div>
               </div>)
-              // <h5>{chat.message}</h5>
             })}
           
        </div>
 
-        <div>
+        <div className='input'>
            <input type="text" placeholder='Message' onChange={(event)=>{setMsg(event.target.value)}}/>
            <button onClick={sendMsg}>&#9658;</button>
         </div>
