@@ -27,6 +27,11 @@ const Chat = ({socket,userName,roomID}) => {
          })
     },[socket])
 
+const handleEnter=(e)=>{
+  if(e.key === 'Enter'){
+    sendMsg()
+  }
+}
   return (
     <div className="container" >
         <h1 className='title'>
@@ -49,7 +54,9 @@ const Chat = ({socket,userName,roomID}) => {
        </div>
 
         <div className='input'>
-           <input type="text" placeholder='Message' onChange={(event)=>{setMsg(event.target.value)}}/>
+           <input type="text" placeholder='Message'
+            onChange={(event)=>{setMsg(event.target.value)}}
+            onKeyDown={handleEnter}/>
            <button onClick={sendMsg}>&#9658;</button>
         </div>
     </div>

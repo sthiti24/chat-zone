@@ -99,6 +99,10 @@
 .input>input::placeholder{
     color: #fff;
 }
+.input>input:focus{
+    outline: none;
+    box-shadow:inset 0px 0px 10px rgb(204, 204, 204);
+}
 .input>button{
   background-color: #fff;
   border: none;
